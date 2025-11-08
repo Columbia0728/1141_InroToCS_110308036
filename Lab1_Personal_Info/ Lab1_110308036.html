@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>About -- 110308036</title>
+  <style>
+    body { font-family: "Times New Roman", Georgia, serif; }
+    .frame { width: 1000px; margin: 20px auto; }
+    .outer { border: 1px solid #cfcfcf; padding: 6px; box-shadow: 0 0 0 2px #e5e5e5 inset; }
+
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th, td { border: 2px solid #7f7f7f; padding: 6px 8px; vertical-align: top; }
+    th[colspan="3"] { text-align: center; font-weight: 700; font-size: 24px; }
+
+    /* 左欄 + 照片 */
+    .photo-cell { width: 150px; text-align: center; padding: 4px; }
+    .photo      { width: 120px; height: 90px; object-fit: cover; display: block; margin: 6px auto; }
+    .photo-cap  { margin: 0; }
+
+    /* 表單欄位 */
+    input[type="text"]  { width: 330px; }
+    input[type="email"] { width: 430px; }
+    select { width: 150px; }
+    .inline { margin-top: 8px; }
+    .inline > label { margin-right: 14px; }
+    .inline input { margin-right: 6px; }
+
+    /* 生日輸入 + 按鈕 */
+    .date-wrap { position: relative; display: inline-block; }
+    .date-wrap input { width: 220px; padding-right: 34px; }
+    .date-btn {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      background: transparent; border: 1px solid #888; width: 25px; height: 20px;
+      cursor: pointer; border-radius: 3px;
+    }
+    .date-wrap input::-webkit-calendar-picker-indicator{ opacity:0; width:0; height:0; pointer-events:none; }
+
+    .say-input { width: 420px; }
+
+    .btn-row { text-align: left; }
+    .btn-row input { padding: 4px 12px; margin-right: 12px; font-family: inherit; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="outer">
+      <form>
+        <table>
+          <!-- 左欄固定 150px；中、右欄平分剩餘寬度 -->
+          <colgroup>
+            <col style="width:150px">
+            <col style="width:calc((100% - 150px)/2)">
+            <col style="width:calc((100% - 150px)/2)">
+          </colgroup>
+
+          <tr>
+            <th colspan="3">About -- 110308036</th>
+          </tr>
+
+          <tr>
+            <td class="photo-cell" rowspan="3">
+              <img class="photo" src="me.jpg" alt="personal photo" />
+              <div class="photo-cap">personal photo</div>
+            </td>
+
+            <td colspan="2">
+              Name:
+              <input type="text" name="name" />
+              <br>
+              <div class="inline">
+                Gender:
+                <label><input type="radio" name="gender" value="Male" />Male</label>
+                <label><input type="radio" name="gender" value="Female" />Female</label>
+                <label><input type="radio" name="gender" value="Other" />Other</label>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Country 與 Birthday 各佔一半 -->
+          <tr>
+            <td>
+              County:
+              <select name="county">
+                <option>Taipei</option>
+                <option>Tainan</option>
+                <option>Taichung</option>
+                <option>Taoyuan</option>
+              </select>
+            </td>
+            <td>
+              Birthday:
+              <span class="date-wrap">
+                <input
+                  id="birthday"
+                  name="birthday"
+                  type="text"
+                  placeholder="年 /月/日"
+                  onfocus="this.type='date';"
+                  onblur="if(!this.value)this.type='text';"
+                  onkeydown="return false"
+                  inputmode="none"
+                />
+                <button type="button" class="date-btn" aria-label="Open calendar"
+                        onclick="openDatePicker('birthday')">🗓</button>
+              </span>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              E-mail:
+              <input type="email" name="email" />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Hobby</td>
+            <td colspan="2" class="inline">
+              <label><input type="checkbox" name="hobby" value="Swimming" /> Swimming</label>
+              <label><input type="checkbox" name="hobby" value="Volleyball" /> Volleyball</label>
+              <label><input type="checkbox" name="hobby" value="Movie" /> Movie</label>
+              <label><input type="checkbox" name="hobby" value="Game" /> Game</label>
+              <label><input type="checkbox" name="hobby" value="sleep" /> sleep</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Skill</td>
+            <td colspan="2" class="inline">
+              <label><input type="checkbox" name="skill" value="Java" /> Java</label>
+              <label><input type="checkbox" name="skill" value="HTML" /> HTML</label>
+              <label><input type="checkbox" name="skill" value="Python" /> Python</label>
+              <label><input type="checkbox" name="skill" value="Microsoft Office" /> Microsoft Office</label>
+              <label><input type="checkbox" name="skill" value="Premiere" /> Premiere</label>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Say Something</td>
+            <td colspan="2">
+              <input type="text" class="say-input" placeholder="Say something here.">
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="3" class="btn-row">
+              <input type="submit" value="提交" />
+              <input type="reset" value="重設" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openDatePicker(id){
+      const el = document.getElementById(id);
+      el.type = 'date';
+      if (el.showPicker) el.showPicker(); else el.focus();
+    }
+  </script>
+</body>
+</html>
+
+
+
