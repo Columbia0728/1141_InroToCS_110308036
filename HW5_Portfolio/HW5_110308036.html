@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>110308036_Portfolio</title>
+  <style>
+    body { font-family: "Microsoft JhengHei", system-ui, -apple-system, Arial, sans-serif; }
+    .wrap { width: 760px; margin: 20px auto; }
+    /* 相片儲存格：取消內距，固定寬度，可選最小高度 */
+    td.pic{
+      padding:0;           /* 關鍵：去掉白邊 */
+      width:230px;         /* 依你的版面調整 */
+      min-height:260px;    /* 可選：確保高度夠，rowspan=4 時較穩定 */
+    }
+
+    /* 圖片填滿儲存格 */
+    td.pic img{
+      display:block;       /* 去除底下行高空隙 */
+      width:100%;
+      height:100%;
+      object-fit:cover;    /* 不變形，裁切以填滿 */
+    }
+    table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    th, td { border: 2px solid #7f7f7f; padding: 8px; vertical-align: top; }
+    .bar { background-color: #6f97a0; color: #000; font-weight: 700; }
+    h1 { margin: 6px 0; text-align: center; font-size: 28px; }
+    ul { margin: 6px 0 6px 22px; }
+    .label { width: 140px; white-space: nowrap; }
+    .pic { width: 200px; }
+    .cell { width: 200px; }
+    .music-list { list-style: none; padding: 0; margin: 0; }
+    .music-item{
+      display:flex;
+      flex-direction:column;   /* 垂直排列：上圖下字 */
+      align-items:flex-start;  /* 與左邊對齊 */
+      gap:10px;
+      margin:10px 0;
+    }
+    .music-item img { width: 28px; height: 28px; display: block; }
+    .music-item span { font-size: 14px; text-align: left; }
+    .contact img { height: 70px; vertical-align: middle; margin-left: 10px; }
+    a { color: #0a58ca; text-decoration: underline; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <table>
+      <!-- #1 Title row -->
+      <tr class="bar">
+        <th colspan="4">
+          <h1>歡迎來到黃以穠的個人作品集</h1>
+        </th>
+      </tr>
+
+      <!-- #2~#5 Personal information: 4 columns, 4 rows -->
+      <tr>
+        <!-- profile image spans 4 rows -->
+        <td class="pic" rowspan="4">
+          <img src = "me.jpg" alt="個人照片" style="width:100%; height:auto;" />
+        </td>
+        <td class="label">姓名</td>
+        <td class="cell" colspan="2">黃以穠</td>
+      </tr>
+      <tr>
+        <td class="label">學校</td>
+        <td class="cell" colspan="2">政治大學</td>
+      </tr>
+      <tr>
+        <td class="label">科系</td>
+        <td class="cell" colspan="2">風險管理與保險系</td>
+      </tr>
+      <tr>
+        <td class="label">年級</td>
+        <td class="cell" colspan="2">大四</td>
+      </tr>
+
+      <!-- #3 Learning History header -->
+      <tr class="bar">
+        <th colspan="4">學習歷程</th>
+      </tr>
+
+      <!-- #3 content: 3 columns, 2 rows (左側標籤 + 右側清單，右側佔兩欄) -->
+      <tr>
+        <td class="label">程式語言</td>
+        <td colspan="3">
+          <ul>
+            <li>熟悉Python</li>
+            <li>HTML入門</li>
+            <li>R 精熟</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">修課紀錄</td>
+        <td colspan="3">
+          <ul>
+            <li>計算機概論</li>
+            <li>線性代數</li>
+            <li>迴歸分析</li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- #4 Portfolio header -->
+      <tr class="bar">
+        <th colspan="4">作品集</th>
+      </tr>
+
+      <!-- #4 assignment links -->
+      <tr>
+        <td colspan="4">
+          <div>作業連結清單</div>
+          <ul>
+            <li><a href="https://github.com/Columbia0728/1141_InroToCS_110308036/tree/dc9754a0b5b9bf9efa86905e83e20b04fb15129b/HW1_Github" target="_blank" rel="noopener">作業 1（HW1_Github）</a></li>
+            <li><a href="https://github.com/Columbia0728/1141_InroToCS_110308036/tree/70c3f19a1457a0a9f8a8c7c90cb7cece5f764f80/HW2_DeepDreamGenerator" target="_blank" rel="noopener">作業 2（HW2_DeepDreamGenerator）</a></li>
+            <li><a href="https://github.com/Columbia0728/1141_InroToCS_110308036/tree/f9a90d8b33ee5fc818cd2e5b26df5f945a41ee9a/HW3_Excel1" target="_blank" rel="noopener">作業 3（HW3_Excel1）</a></li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- #4 favorite music (用圖片做連結) -->
+      <tr>
+        <td colspan="4">
+          <div>我的最愛音樂</div>
+          <ul class="music-list">
+            <li class="music-item">
+              <a href="https://youtu.be/ia2Ph61bYzc?si=LZxO2SH6bRWBHgvl">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify 圖示">
+              </a>
+              <span>Messy</span>
+            </li>
+            <li class="music-item">
+              <a href="https://youtu.be/vHvOYQ0hbBA?si=n1J-ItrBjK7PHOPL">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify 圖示">
+              </a>
+              <span>stay a little longer</span>
+            </li>
+            <li class="music-item">
+              <a href="https://youtu.be/PFDO5OZO61Y?si=BTBxKkc5qICm5N_y">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg" alt="Spotify 圖示">
+              </a>
+              <span>drinks or coffee</span>
+            </li>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- #5 Contact header -->
+      <tr class="bar">
+        <th colspan="4">聯絡方式</th>
+      </tr>
+
+      <!-- #5 contact row -->
+      <tr class="contact">
+        <td colspan="4">
+          <div class="contact-flex">
+            <div>聯絡我：<a href="mailto:110308036@g.nccu.edu.tw">110308036@g.nccu.edu.tw</a></div>
+            <a href="https://zh.wikipedia.org/zh-tw/國立政治大學" target="_blank" rel="noopener">
+              <img src="nccu.jpg" alt="國立政治大學校徽" width="160">
+            </a>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+</body>
+</html>
