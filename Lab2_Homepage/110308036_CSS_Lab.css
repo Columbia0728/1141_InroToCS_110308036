@@ -1,0 +1,148 @@
+/* ===== BODY ===== */
+body {
+    color: #333333;                 /* requirement: color */
+    background-color: #f1f1f1;      /* requirement: background-color */
+    font-family: Arial, Helvetica, sans-serif;  /* requirement: font-family */
+    margin: 0;
+}
+
+/* ===== 頁首區塊（藍色區域） ===== */
+.page-header {
+    background-color: #42a5f5;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 0 22px;
+}
+
+.page-header h1 {
+    font-family: "Times New Roman", Georgia, serif;  /* heading font-family */
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 10px;
+}
+
+.page-header p {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+/* ===== 導覽列 navbar ===== */
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #263238;
+    display: flex;
+    justify-content: center;
+
+    /* requirement: position / top / left / width (em unit) */
+    position: relative;
+    top: 0em;
+    left: 0em;
+    width: 100%;
+}
+
+.navbar > li {
+    flex: 1;
+    text-align: center;
+}
+
+.navbar a {
+    display: block;
+    padding: 12px 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.navbar a:hover {
+    background-color: #37474f;
+}
+
+/* 目前所在頁（Services）顏色較亮 */
+.navbar a.active {
+    color: #40b0ff;
+}
+
+/* ===== 內文區 ===== */
+.content {
+    padding: 20px;
+}
+
+.content p {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+}
+
+/* ===== 下拉選單 dropdown ===== */
+.dropdown {
+    position: relative;
+}
+
+/* 下拉面板本體：顏色、圓角、陰影、位置 */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);   /* 讓面板正好在 Services 下方居中 */
+    margin-top: 6px;
+    list-style-type: none;
+    padding: 10px 0;
+    background-color: #263645;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+    min-width: 18em;
+    z-index: 10;
+}
+
+/* 下拉選單內的各項目 */
+.dropdown-menu li a {
+    padding: 12px 28px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dropdown-menu li + li a {
+    margin-top: 4px;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #314555;
+}
+
+/* hover 時顯示下拉選單 */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* ===== 媒體查詢 ===== */
+@media all {
+    body {
+        font-size: 1em;
+    }
+}
+
+@media print {
+    body {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    .page-header {
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    .navbar,
+    .dropdown-menu {
+        display: none;
+    }
+}
+
+
