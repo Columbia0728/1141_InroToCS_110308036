@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>110308036_HW7_1A2B</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            background: radial-gradient(circle at top, #fef3c7 0, #eff6ff 40%, #e5e7eb 100%);
+            color: #111827;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 16px 40px;
+        }
+
+        /* 規定：第一個 h1 必須是 StudentID_HW6_1A2B */
+        h1 {
+            margin: 0;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #111827;
+        }
+
+        .page-title {
+            margin-top: 4px;
+            font-size: 40px;
+            font-weight: 800;
+        }
+
+        .game-wrapper {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 4fr);
+            gap: 20px;
+        }
+
+        .panel {
+            background: #ffffffcc;
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.10);
+        }
+
+        .panel-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge {
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #d1fae5;
+            color: #047857;
+        }
+
+        .instructions ol {
+            margin: 4px 0 0;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #374151;
+        }
+
+        .instructions li {
+            margin-bottom: 6px;
+        }
+
+        .hint-box {
+            margin-top: 10px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: #eff6ff;
+            font-size: 13px;
+            color: #1f2937;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .input-row {
+            margin: 16px 0 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        #userInput {
+            width: 160px;
+            padding: 9px 11px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            outline: none;
+            transition: box-shadow 0.15s, border-color 0.15s;
+        }
+
+        #userInput:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        button {
+            padding: 9px 16px;
+            font-size: 14px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.1s, box-shadow 0.1s, background-color 0.15s;
+        }
+
+        #guessBtn {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 8px 18px rgba(16, 185, 129, 0.45);
+        }
+
+        #resetBtn {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(31, 41, 55, 0.20);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .status-line {
+            font-size: 13px;
+            color: #4b5563;
+            margin-bottom: 8px;
+        }
+
+        .status-highlight {
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        thead {
+            background: #f3f4f6;
+        }
+
+        th, td {
+            padding: 6px 8px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .result-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #e0f2fe;
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+
+        .result-correct {
+            background: #bbf7d0;
+            color: #15803d;
+        }
+
+        @media (max-width: 760px) {
+            .game-wrapper {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .page-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <!-- 規定的 h1：StudentID_HW6_1A2B -->
+    <h1>110308036_HW7_1A2B</h1>
+    <div class="page-title">Today’s Homework</div>
+
+    <div class="game-wrapper">
+        <!-- 左邊：遊戲說明 -->
+        <div class="panel instructions">
+            <div class="panel-title">
+                1A2B Game Rules
+                <span class="badge">Easy to play</span>
+            </div>
+            <ol>
+                <li>系統會隨機產生一組 <b>4 位數、不重複</b> 的密碼（0–9）。</li>
+                <li>在右邊輸入框輸入你的猜測，例如：<code>1234</code>，再按 <b>Guess!</b>。</li>
+                <li>
+                    每次猜完會得到一個結果：
+                    <b>XAXB</b>（A 代表數字與位置都對，B 代表數字對但位置錯）。
+                </li>
+                <li>當結果變成 <b>4A0B</b> 時，代表你完全猜中，遊戲結束。</li>
+                <li>如果想重新開始，可以按 <b>New Game</b> 產生新的答案。</li>
+            </ol>
+            <div class="hint-box">
+                小提醒：<br>
+                ‧ 輸入必須剛好 <b>4 個阿拉伯數字</b><br>
+                ‧ <b>不能有重複數字</b><br>
+                ‧ 不符合規定時，系統會提醒錯誤
+            </div>
+        </div>
+
+        <!-- 右邊：實際遊戲區 -->
+        <div class="panel">
+            <div class="panel-title">
+                Play Area
+                <span class="badge">Start guessing!</span>
+            </div>
+
+            <div class="input-row">
+                <label for="userInput">Enter 4 unique digits:</label>
+                <input id="userInput" type="text" maxlength="4" placeholder="e.g. 1234">
+                <button id="guessBtn" onclick="play()">Guess!</button>
+                <button id="resetBtn" onclick="resetGame()">New Game</button>
+            </div>
+
+            <div class="status-line">
+                Attempts: <span id="attempts" class="status-highlight">0</span>
+                &nbsp; | &nbsp;
+                Last result:
+                <span id="lastResult" class="status-highlight">--</span>
+            </div>
+
+            <div class="status-line">
+                Secret answer has been generated. Try to reach <b>4A0B</b>!
+            </div>
+
+            <div style="margin-top: 10px; font-size: 14px; font-weight: 600;">Game Record</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 70px;">Attempt</th>
+                        <th style="width: 120px;">Guess</th>
+                        <th>Result (XAXB)</th>
+                    </tr>
+                </thead>
+                <tbody id="recordBody">
+                    <!-- JS 會在這裡插入紀錄 -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    let answer = generateAnswer();
+    let count = 0;
+    let gameOver = false;
+
+    function generateAnswer() {
+        let digits = ["0","1","2","3","4","5","6","7","8","9"];
+        let ans = [];
+
+        while (ans.length < 4) {
+            let idx = Math.floor(Math.random() * digits.length);
+            ans.push(digits[idx]);
+            digits.splice(idx, 1); // 刪掉已使用的數字，避免重複
+        }
+        return ans.join("");
+    }
+
+    function play() {
+        if (gameOver) {
+            alert("遊戲已結束，請按 New Game 重新開始。");
+            return;
+        }
+
+        let inputField = document.getElementById("userInput");
+        let guess = inputField.value.trim();
+
+        if (!isValid(guess)) {
+            inputField.value = "";
+            inputField.focus();
+            return;
+        }
+
+        count++;
+        let result = checkAB(guess, answer);
+
+        // 更新上方狀態列
+        document.getElementById("attempts").textContent = count;
+        document.getElementById("lastResult").textContent = result;
+
+        // 新增一列紀錄
+        let tbody = document.getElementById("recordBody");
+        let tr = document.createElement("tr");
+
+        let tdAttempt = document.createElement("td");
+        tdAttempt.textContent = "第 " + count + " 次";
+        let tdGuess = document.createElement("td");
+        tdGuess.textContent = guess;
+
+        let tdResult = document.createElement("td");
+        let span = document.createElement("span");
+        span.className = "result-pill" + (result === "4A0B" ? " result-correct" : "");
+        span.textContent = result;
+        tdResult.appendChild(span);
+
+        tr.appendChild(tdAttempt);
+        tr.appendChild(tdGuess);
+        tr.appendChild(tdResult);
+        tbody.appendChild(tr);
+
+        if (result === "4A0B") {
+            alert("恭喜答對！總共猜了 " + count + " 次！");
+            gameOver = true;
+        }
+
+        inputField.value = "";
+        inputField.focus();
+    }
+
+    function isValid(str) {
+        if (str.length !== 4) {
+            alert("請輸入剛好 4 位數字！");
+            return false;
+        }
+
+        if (!/^\d{4}$/.test(str)) {
+            alert("只能輸入 0–9 的數字！");
+            return false;
+        }
+
+        let set = new Set(str);
+        if (set.size !== 4) {
+            alert("不能有重複數字！");
+            return false;
+        }
+        return true;
+    }
+
+    function checkAB(guess, ans) {
+        let A = 0, B = 0;
+        for (let i = 0; i < 4; i++) {
+            if (guess[i] === ans[i]) {
+                A++;
+            } else if (ans.includes(guess[i])) {
+                B++;
+            }
+        }
+        return A + "A" + B + "B";
+    }
+
+    function resetGame() {
+        answer = generateAnswer();
+        count = 0;
+        gameOver = false;
+
+        document.getElementById("userInput").value = "";
+        document.getElementById("attempts").textContent = "0";
+        document.getElementById("lastResult").textContent = "--";
+        document.getElementById("recordBody").innerHTML = "";
+        document.getElementById("userInput").focus();
+    }
+</script>
+
+</body>
+</html>
