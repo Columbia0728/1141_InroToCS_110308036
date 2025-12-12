@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grade Statistics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Grade Statistics</h2>
+
+  <div id="controls">
+    <input type="number" id="mathInput" placeholder="Math" min="0" max="100">
+    <input type="number" id="englishInput" placeholder="English" min="0" max="100">
+    <button id="submitBtn">Submit</button>
+  </div>
+
+  <table id="gradeTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Math</th>
+        <th>English</th>
+        <th>Average</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+      <tr>
+        <td>Average</td>
+        <td id="mathAvgCell">0.00</td>
+        <td id="engAvgCell">0.00</td>
+        <td id="overallAvgCell">0.00</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
